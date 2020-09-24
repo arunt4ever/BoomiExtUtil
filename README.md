@@ -11,9 +11,9 @@ Below are the steps you have to follow to use this in your Boomi Environment;
 4. Select Custom Library Type -> Scripting.
 5. Search and Add the .jar file which was previously uploaded in your account.
 6. Deploy this component to your environment.
-7. Create a new process and write a custom script in data process shape in Boomi and then test the process on the same environment you have deployed this BoomiExtUtil.
+7. Create a new process and write a Groovy custom script in data process shape in Boomi and then test the process on the same environment you have deployed this BoomiExtUtil.
 
-Sample Code:
+Simple Usage Code:
 ````java
 import java.util.Properties;
 import java.io.InputStream;
@@ -33,3 +33,35 @@ for( int i = 0; i < dataContext.getDataCount(); i++ ) {
     dataContext.storeStream(is, props);
 }
 ````
+
+JSON Schema Validation:
+````java
+import java.util.Properties;
+import java.io.InputStream;
+import com.arunzlair.boomiextutil.JSONValidation;
+import com.boomi.execution.ExecutionUtil;
+import groovy.transform.Field
+
+logger = ExecutionUtil.getBaseLogger();
+
+@Field
+JSONValidation jsonVal = new JSONValidation()
+
+for( int i = 0; i < dataContext.getDataCount(); i++ ) {
+    InputStream is = dataContext.getStream(i);
+    Properties props = dataContext.getProperties(i);
+    
+    String jsonSchema = props.getProperty("document.dynamic.userdefined.DDP_JSON_SCHEMA");
+    String jsonData = props.getProperty("document.dynamic.userdefined.DDP_JSON_FILE");
+    
+
+    String result = jsonVal.isValid(jsonSchema, jsonData)
+    String message = jsonVal.getValidationMsgs()
+    // logger.info();
+    logger.info(message);
+
+    dataContext.storeStream(is, props);
+}
+````
+
+
