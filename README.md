@@ -13,7 +13,7 @@ Below are the steps you have to follow to use this in your Boomi Environment;
 6. Deploy this component to your environment.
 7. Create a new process and write a Groovy custom script in data process shape in Boomi and then test the process on the same environment you have deployed this BoomiExtUtil.
 
-Simple Usage Code:
+#### Simple Usage Code:
 ````java
 import java.util.Properties;
 import java.io.InputStream;
@@ -34,7 +34,8 @@ for( int i = 0; i < dataContext.getDataCount(); i++ ) {
 }
 ````
 
-JSON Schema Validation:
+
+#### JSON Schema Validation:
 ````java
 import java.util.Properties;
 import java.io.InputStream;
