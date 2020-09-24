@@ -58,7 +58,6 @@ for( int i = 0; i < dataContext.getDataCount(); i++ ) {
 
     String result = jsonVal.isValid(jsonSchema, jsonData)
     String message = jsonVal.getValidationMsgs()
-    // logger.info();
     logger.info(message);
 
     dataContext.storeStream(is, props);
