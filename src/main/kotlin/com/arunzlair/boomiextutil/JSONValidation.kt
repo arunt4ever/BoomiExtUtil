@@ -31,6 +31,7 @@ class JSONValidation {
           return true
      }
 
+     @JvmOverloads
      fun getValidationMsg(delimiter: String = "; "): String {
           return validationMsg.joinToString(separator = delimiter)
      }
