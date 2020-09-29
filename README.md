@@ -36,6 +36,13 @@ for( int i = 0; i < dataContext.getDataCount(); i++ ) {
 
 
 #### JSON Schema Validation:
+
+Reference Links:
+1. [JSON-Schema](http://json-schema.org/)
+2. [everit-org/json-schema](https://github.com/everit-org/json-schema)
+
+Tested with Draft4 and should support Draft 6 and 7 as well. 
+
 ````java
 import java.util.Properties;
 import java.io.InputStream;
@@ -55,10 +62,19 @@ for( int i = 0; i < dataContext.getDataCount(); i++ ) {
     String jsonSchema = props.getProperty("document.dynamic.userdefined.DDP_JSON_SCHEMA");
     String jsonData = props.getProperty("document.dynamic.userdefined.DDP_JSON_FILE");
     
-
-    String result = jsonVal.isValid(jsonSchema, jsonData)
-    String message = jsonVal.getValidationMsgs()
-    logger.info(message);
+    Boolean result = jsonVal.isValid(jsonSchema, jsonData)
+    
+    // default delimiter is "; "
+    String message1 = jsonVal.getValidationMsg()
+    logger.info(message1);
+    
+    // newline "\n" char
+    String message2 = jsonVal.getValidationMsg("\n")
+    logger.info(message2);
+    
+    // Validation Message in JSON format
+    String message3 = jsonVal.getValidationMsgJSON()
+    logger.info(message3);
 
     dataContext.storeStream(is, props);
 }
