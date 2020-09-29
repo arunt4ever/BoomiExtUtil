@@ -11,7 +11,8 @@ import java.io.IOException
 
 class JSONValidation {
 
-     private var errorMsgs: List<String> = emptyList()
+     private var validationMsg: List<String> = emptyList()
+     private var validationMsgJSON: String = ""
 
      fun isValid(jsonSchema: String, jsonData: String): Boolean {
           try {
@@ -19,8 +20,8 @@ class JSONValidation {
                val schema: Schema = SchemaLoader.load(jsonSchemaObj)
                schema.validate(JSONObject(jsonData))
           }catch (e: ValidationException){
-               errorMsgs = e.causingExceptions.map { ve -> ve.allMessages }.flatten()
-               e.causingExceptions.map { ve -> ve.allMessages }.forEach{println("$it")}
+               validationMsg = e.causingExceptions.map { ve -> ve.allMessages }.flatten()
+               validationMsgJSON  = e.toJSON().toString(4)
                return false
           }catch (e: FileNotFoundException){
                e.printStackTrace()
@@ -30,8 +31,12 @@ class JSONValidation {
           return true
      }
 
-     fun getValidationMsgs(): String {
-          return errorMsgs.joinToString(separator = "; ")
+     fun getValidationMsg(delimiter: String = "; "): String {
+          return validationMsg.joinToString(separator = delimiter)
+     }
+
+     fun getValidationMsgJSON(): String {
+          return validationMsgJSON
      }
 }
 
@@ -41,5 +46,6 @@ class JSONValidation {
 //     val jsonVal = JSONValidation()
 //     println(jsonVal.getValidationMsgs())
 //     println(jsonVal.isValid(jsonSchema,jsonData))
-//     println(jsonVal.getValidationMsgs())
+//     println(jsonVal.getValidationMsgs("\n"))
+//     println(jsonVal.getValidationMsgJSON())
 //}

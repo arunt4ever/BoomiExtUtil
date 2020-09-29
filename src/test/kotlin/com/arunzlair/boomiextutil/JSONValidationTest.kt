@@ -21,7 +21,7 @@ internal class JSONValidationTest {
 
     @Test
     fun getValidationMsgs() {
-        assertNotNull(jsonVal.getValidationMsgs())
+        assertNotNull(jsonVal.getValidationMsg())
     }
 
     @BeforeEach
