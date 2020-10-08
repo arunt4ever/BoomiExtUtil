@@ -28,6 +28,8 @@ class JSONValidation {
           }catch (e: IOException){
                e.printStackTrace()
           }
+          validationMsg = emptyList()
+          validationMsgJSON = ""
           return true
      }
 
@@ -42,11 +44,19 @@ class JSONValidation {
 }
 
 //fun main(){
-//     val jsonData = File("/Users/arunthangavel/IdeaProjects/BoomiExtUtil/src/main/resources/poc.json").readText()
+//     var jsonData = File("/Users/arunthangavel/IdeaProjects/BoomiExtUtil/src/main/resources/poc.json").readText()
 //     val jsonSchema = File("/Users/arunthangavel/IdeaProjects/BoomiExtUtil/src/main/resources/poc.xsd").readText()
 //     val jsonVal = JSONValidation()
-//     println(jsonVal.getValidationMsgs())
+//     println(jsonVal.getValidationMsg())
+//
+//     // inValid Case
 //     println(jsonVal.isValid(jsonSchema,jsonData))
-//     println(jsonVal.getValidationMsgs("\n"))
+//     println(jsonVal.getValidationMsg("\n"))
+//     println(jsonVal.getValidationMsgJSON())
+//
+//     // Valid Case
+//     jsonData = File("/Users/arunthangavel/IdeaProjects/BoomiExtUtil/src/main/resources/poc_good.json").readText()
+//     println(jsonVal.isValid(jsonSchema,jsonData))
+//     println(jsonVal.getValidationMsg("\n"))
 //     println(jsonVal.getValidationMsgJSON())
 //}

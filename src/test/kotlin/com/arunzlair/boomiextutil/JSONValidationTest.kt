@@ -20,8 +20,20 @@ internal class JSONValidationTest {
     }
 
     @Test
-    fun getValidationMsgs() {
+    fun valid(){
+        val jsonData = File("/Users/arunthangavel/IdeaProjects/BoomiExtUtil/src/main/resources/poc_good.json").readText()
+        val jsonSchema = File("/Users/arunthangavel/IdeaProjects/BoomiExtUtil/src/main/resources/poc.xsd").readText()
+        assertTrue(jsonVal.isValid(jsonSchema,jsonData))
+    }
+
+    @Test
+    fun getValidationMsg() {
         assertNotNull(jsonVal.getValidationMsg())
+    }
+
+    @Test
+    fun getValidationMsgJSON(){
+        assertNotNull(jsonVal.getValidationMsgJSON())
     }
 
     @BeforeEach
