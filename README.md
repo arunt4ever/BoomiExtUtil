@@ -63,18 +63,22 @@ for( int i = 0; i < dataContext.getDataCount(); i++ ) {
     String jsonData = props.getProperty("document.dynamic.userdefined.DDP_JSON_FILE");
     
     Boolean result = jsonVal.isValid(jsonSchema, jsonData)
+    logger.info("valid =" + result);
     
-    // default delimiter is "; "
-    String message1 = jsonVal.getValidationMsg()
-    logger.info(message1);
-    
-    // newline "\n" char
-    String message2 = jsonVal.getValidationMsg("\n")
-    logger.info(message2);
-    
-    // Validation Message in JSON format
-    String message3 = jsonVal.getValidationMsgJSON()
-    logger.info(message3);
+    // Access Validation Message only when the "isValid" method returns false
+    if (!result) {
+        // default delimiter is "; "
+        String message1 = jsonVal.getValidationMsg()
+        logger.info(message1);
+
+        // newline "\n" char
+        String message2 = jsonVal.getValidationMsg("\n")
+        logger.info(message2);
+
+        // Validation Message in JSON format
+        String message3 = jsonVal.getValidationMsgJSON()
+        logger.info(message3);
+    }
 
     dataContext.storeStream(is, props);
 }
