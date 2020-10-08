@@ -11,7 +11,9 @@ Below are the steps you have to follow to use this in your Boomi Environment;
 4. Select Custom Library Type -> Scripting.
 5. Search and Add the .jar file which was previously uploaded in your account.
 6. Deploy this component to your environment.
-7. Create a new process and write a Groovy custom script in data process shape in Boomi and then test the process on the same environment you have deployed this BoomiExtUtil.
+7. Create a new process and write a Groovy custom script(Groovy 2.4) in data process shape in Boomi and then test the process on the same environment you have deployed this BoomiExtUtil.
+
+***Note: Don't forget to select "Groovy 2.4" as the custom scripting language***
 
 #### Simple Usage Code:
 ````java
@@ -41,7 +43,7 @@ Reference Links:
 1. [JSON-Schema](http://json-schema.org/)
 2. [everit-org/json-schema](https://github.com/everit-org/json-schema)
 
-Tested with Draft4 and should support Draft 6 and 7 as well. 
+Tested with Draft4, Draft7 and should support Draft6 as well. 
 
 ````java
 import java.util.Properties;
