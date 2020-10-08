@@ -5,7 +5,7 @@ plugins {
     id("com.github.johnrengelman.shadow") version "6.0.0"
 }
 group = "com.arunzlair"
-version = "1.1"
+version = "1.2"
 
 repositories {
     mavenCentral()
