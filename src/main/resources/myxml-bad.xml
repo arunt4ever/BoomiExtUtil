@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<names xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+    <name>Manny Monday</name>
+    <name>Armando Aragon</name>
+    <name1>Berting Labra</name1>
+    <otherInfo>
+        <city1>Makati</city1>
+        <country>Philippines</country>
+    </otherInfo>
+</names>
