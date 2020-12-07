@@ -86,4 +86,45 @@ for( int i = 0; i < dataContext.getDataCount(); i++ ) {
 }
 ````
 
+#### XML Schema Validation:
 
+````java
+import java.util.Properties;
+import java.io.InputStream;
+import com.arunzlair.boomiextutil.XMLValidation;
+import com.boomi.execution.ExecutionUtil;
+import groovy.transform.Field
+
+logger = ExecutionUtil.getBaseLogger();
+
+@Field
+XMLValidation xmlVal = new XMLValidation()
+
+for( int i = 0; i < dataContext.getDataCount(); i++ ) {
+    InputStream is = dataContext.getStream(i);
+    Properties props = dataContext.getProperties(i);
+    
+    String xmlSchema = props.getProperty("document.dynamic.userdefined.DDP_XML_SCHEMA");
+    String xmlData = props.getProperty("document.dynamic.userdefined.DDP_XML_FILE");
+    
+    Boolean result = xmlVal.isValid(xmlSchema, xmlData)
+    logger.info("valid =" + result);
+    
+    // Access Validation Message only when the "isValid" method returns false
+    if (!result) {
+        // default delimiter is "; "
+        String message1 = xmlVal.getValidationMsg()
+        logger.info(message1);
+
+        // newline "\n" char
+        String message2 = xmlVal.getValidationMsg("\n")
+        logger.info(message2);
+
+        // Validation Message in JSON format
+        String message3 = xmlVal.getValidationMsgJSON()
+        logger.info(message3);
+    }
+
+    dataContext.storeStream(is, props);
+}
+````
